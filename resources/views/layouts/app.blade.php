@@ -50,6 +50,7 @@
         $navItems = [
             ['route' => 'dashboard',   'label' => 'Dashboard',   'icon' => 'home'],
             ['route' => 'alumnos.index', 'label' => 'Alumnos',   'icon' => 'users'],
+            ['route' => 'cursos.index', 'label' => 'Cursos',   'icon' => 'book'],
         ];
     @endphp
                 @foreach ($navItems as $item)
@@ -87,6 +88,7 @@
             </nav>
             {{-- Footer del sidebar: usuario logueado --}}
             <div class="border-t border-slate-700/60 p-4">
+                @auth
                 <div class="flex items-center gap-3">
                     <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center
                                 text-xs font-bold text-slate-300 flex-shrink-0">
@@ -113,6 +115,21 @@
                         </button>
                     </form>
                 </div>
+                @else
+                    <div class="space-y-3">
+                        <p class="text-xs text-slate-500">Sesion no iniciada</p>
+                        <div class="flex gap-2">
+                            <a href="{{ route('login') }}"
+                               class="flex-1 text-center px-3 py-2 rounded-lg bg-sky-600 text-white text-sm font-medium hover:bg-sky-500 transition-colors">
+                                Log in
+                            </a>
+                            <a href="{{ route('register') }}"
+                               class="flex-1 text-center px-3 py-2 rounded-lg bg-slate-800 text-slate-200 text-sm font-medium hover:bg-slate-700 transition-colors">
+                                Register
+                            </a>
+                        </div>
+                    </div>
+                @endauth
             </div>
         </aside>
     {{-- ================== FIN SIDEBAR ================== --}}

@@ -34,48 +34,50 @@
         </div>
 
         <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
-            <table class="w-full text-sm">
-                <thead>
-                <tr class="bg-slate-50 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-200">
-                    <th class="px-6 py-3">Codigo</th>
-                    <th class="px-6 py-3">Curso</th>
-                    <th class="px-6 py-3">Catedratico</th>
-                    <th class="px-6 py-3">Creditos</th>
-                    <th class="px-6 py-3">Ciclo</th>
-                </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                @forelse ($cursos as $curso)
-                    <tr class="hover:bg-slate-50 transition-colors">
-                        <td class="px-6 py-4">
-                            <span class="font-mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">
-                                {{ $curso->codigo }}
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="font-medium text-slate-700">{{ $curso->nombre }}</p>
-                            <p class="text-xs text-slate-400 max-w-md truncate">{{ $curso->descripcion }}</p>
-                        </td>
-                        <td class="px-6 py-4">
-                            <p class="font-medium text-slate-700">{{ $curso->catedratico->nombre_completo }}</p>
-                            <p class="text-xs text-slate-400">{{ $curso->catedratico->email }}</p>
-                        </td>
-                        <td class="px-6 py-4 text-slate-500">{{ $curso->creditos }}</td>
-                        <td class="px-6 py-4">
-                            <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-50 text-sky-700">
-                                {{ ucfirst($curso->ciclo) }}
-                            </span>
-                        </td>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                    <tr class="bg-slate-50 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+                        <th class="px-6 py-3">Codigo</th>
+                        <th class="px-6 py-3">Curso</th>
+                        <th class="px-6 py-3">Catedratico</th>
+                        <th class="px-6 py-3">Creditos</th>
+                        <th class="px-6 py-3">Ciclo</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="px-6 py-14 text-center text-slate-400">
-                            No hay cursos registrados.
-                        </td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                    @forelse ($cursos as $curso)
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4">
+                                <span class="font-mono text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded">
+                                    {{ $curso->codigo }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="font-medium text-slate-700">{{ $curso->nombre }}</p>
+                                <p class="text-xs text-slate-400 max-w-md truncate">{{ $curso->descripcion }}</p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="font-medium text-slate-700">{{ $curso->catedratico->nombre_completo }}</p>
+                                <p class="text-xs text-slate-400">{{ $curso->catedratico->email }}</p>
+                            </td>
+                            <td class="px-6 py-4 text-slate-500">{{ $curso->creditos }}</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-50 text-sky-700">
+                                    {{ ucfirst($curso->ciclo) }}
+                                </span>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-14 text-center text-slate-400">
+                                No hay cursos registrados.
+                            </td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
 
             @if ($cursos->hasPages())
                 <div class="px-6 py-4 border-t border-slate-100">
