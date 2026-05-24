@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,5 +20,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('alumnos', AlumnoController::class);
+
+Route::get('/cursos', function () {
+    $cursos = Curso::with('catedratico')->orderBy('codigo')->paginate(15);
+
+    return view('cursos.index', compact('cursos'));
+})->name('cursos.index');
 
 require __DIR__.'/auth.php';
